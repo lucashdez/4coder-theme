@@ -1,5 +1,5 @@
-local util = require("solarized-osaka.util")
-local hslutil = require("solarized-osaka.hsl")
+local util = require("4coder-theme.util")
+local hslutil = require("4coder-theme.hsl")
 local hsl = hslutil.hslToHex
 
 local M = {}
