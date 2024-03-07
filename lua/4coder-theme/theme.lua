@@ -99,7 +99,7 @@ function M.setup()
 		Keyword = { fg = c.coder_keyword, style = options.styles.keywords }, --  any other keyword
 		PreProc = { fg = c.coder_preproc }, -- (preferred) generic Preprocessor
 		Include = { fg = c.coder_preproc },
-		Type = { fg = c.coder_highlight }, -- (preferred) int, long, char, etc.
+		Type = { fg = c.coder_keyword }, -- (preferred) int, long, char, etc.
 		Special = { fg = c.coder_highlight_junk }, -- (preferred) any special symbol
 		Debug = { fg = c.orange500 }, --    debugging statements
 		Underlined = { underline = true }, -- (preferred) text that stands out, HTML links
