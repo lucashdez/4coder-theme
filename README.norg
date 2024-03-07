@@ -1,5 +1,10 @@
 * 4coder-theme for Neovim
+  This is the theme of 4coder ported to neovim with some improvements on the 
+  syntax highlighting via using treesitter and all the utility functions that
+  this editor provides.
 
-* Styles
-** Classic
-** Mod
+* Achievements
+  - Treesitter support
+  - LSP support
+  - Snippets
+  - Fuzzy finder
