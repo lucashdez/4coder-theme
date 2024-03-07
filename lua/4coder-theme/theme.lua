@@ -18,8 +18,8 @@ function M.setup()
 	theme.highlights = {
 		Comment = { fg = c.coder_comment, style = options.styles.comments },
 		ColorColumn = { bg = c.coder_ghost_character },
-		Conceal = { fg = c.blue500 },
-		Cursor = { bg = c.coder_cursor.active, fg = c.coder_background },
+		Conceal = { fg = c.blue500 }, -- placeholder characters substituted for concealed text (see 'conceallevel')
+		Cursor = { bg = c.coder_cursor.active, fg = c.coder_background }, --characters under the cursor
 		lCursor = { bg = c.coder_cursor.active, fg = c.coder_background }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
 		CursorIM = { bg = c.coder_cursor.active, fg = c.coder_background }, -- like Cursor, but used when in IME mode |CursorIM|
 		CursorColumn = { bg = c.coder_margin_hover }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
