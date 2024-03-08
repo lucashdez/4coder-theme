@@ -7,6 +7,7 @@ local defaults = {
 	styles = {
 		comments = { italic = true },
 		keywords = { italic = true },
+		macros = { bold = true },
 		functions = {},
 		variables = {},
 

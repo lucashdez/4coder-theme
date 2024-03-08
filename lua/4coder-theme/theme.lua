@@ -85,8 +85,8 @@ function M.setup()
 		-- but they are defacto standard group names for syntax highlighting.
 		-- commented out groups should chain up to their "preferred" group by
 		-- default,
-		-- Uncomment and edit if you want more specific syntax highlighting.
-		Constant = { fg = c.coder_preproc, bold = true }, -- (preferred) any constant
+		--[[ Uncomment and edit if you want more specific syntax highlighting.
+		Constant = { fg = c.coder_at_highlight, bold = true }, -- (preferred) any constant
 		String = { fg = c.coder_str_constant }, --   a string constant: "this is a string"
 		Character = { fg = c.coder_str_constant }, --  a character constant: 'c', '\n'
 		Number = { fg = c.coder_int_constant }, --   a number constant: 234, 0xff
@@ -99,9 +99,10 @@ function M.setup()
 		Keyword = { fg = c.coder_keyword, style = options.styles.keywords }, --  any other keyword
 		PreProc = { fg = c.coder_preproc }, -- (preferred) generic Preprocessor
 		Include = { fg = c.coder_preproc },
-		Type = { fg = c.coder_keyword }, -- (preferred) int, long, char, etc.
+		Type = { fg = c.coder_type }, -- (preferred) int, long, char, etc.
 		Special = { fg = c.coder_highlight_junk }, -- (preferred) any special symbol
 		Debug = { fg = c.orange500 }, --    debugging statements
+        -- ]]
 		Underlined = { underline = true }, -- (preferred) text that stands out, HTML links
 		Bold = { bold = true },
 		Italic = { italic = true },
@@ -168,66 +169,96 @@ function M.setup()
 		DapStoppedLine = { bg = c.yellow700 }, -- Used for "Warning" diagnostic virtual text
 
 		-- These groups are for the Neovim tree-sitter highlights.
-		["@annotation"] = { link = "PreProc" },
-		["@attribute"] = { link = "PreProc" },
-		["@boolean"] = { link = "Boolean" },
-		["@character"] = { link = "Character" },
-		["@character.special"] = { link = "SpecialChar" },
-		["@comment"] = { link = "Comment" },
-		["@keyword.conditional"] = { link = "Conditional" },
-		["@constant"] = { link = "Constant" },
-		["@constant.builtin"] = { link = "Special" },
-		["@constant.macro"] = { link = "Define" },
-		["@keyword.debug"] = { link = "Debug" },
-		["@keyword.directive.define"] = { link = "Define" },
-		["@keyword.exception"] = { link = "Exception" },
-		["@number.float"] = { link = "Float" },
-		["@function"] = { link = "Function" },
-		["@function.builtin"] = { link = "Special" },
-		["@function.call"] = { link = "@function" },
-		["@function.macro"] = { link = "Macro" },
-		["@keyword.import"] = { link = "Include" },
+		["@none"] = { fg = c.coder_text_default },
+		-- misc
+		["@annotation"] = { fg = c.coder_preproc },
+		["@attribute"] = { fg = c.coder_preproc },
+		["@operator"] = { fg = c.coder_preproc }, -- For any operator: `+`, but also `->` and `*` in C.
+		["@comment"] = { fg = c.coder_comment },
+
+		-- types
+		["@type"] = { link = "@none" },
+		["@type.definition"] = { link = "@none" },
+		["@type.qualifier"] = { link = "@none" },
+		["@type.builtin"] = { fg = c.coder_keyword },
+		["@string"] = { fg = c.coder_str_constant },
+		["@string.documentation"] = { fg = c.cyan500 },
+		["@string.regexp"] = { fg = c.coder_str_special }, -- For regexes.
+		["@string.escape"] = { fg = c.coder_str_special }, -- For escape characters within a string.
+		["@number"] = { fg = c.coder_int_constant },
+		["@number.float"] = { fg = c.coder_float_constant },
+		["@boolean"] = { fg = c.coder_bool_constant },
+		["@character"] = { fg = c.coder_char_constant },
+		["@character.special"] = { fg = c.coder_char_constant },
+		["@constant"] = {},
+		["@constant.builtin"] = { fg = c.coder_constant_builtin },
+		["@constant.macro"] = { fg = c.coder_preproc },
+		--- Variables
+		["@variable"] = { fg = c.coder_text_default }, -- Any variable name that does not have another highlight.
+		["@variable.builtin"] = { fg = c.coder_at_highlight }, -- Variable names that are defined by the languages, like `this` or `self`.
+		["@variable.member"] = { fg = c.coder_text_default }, -- For fields.
+		["@variable.module"] = { fg = c.coder_text_default },
+		["@variable.type"] = { fg = c.coder_text_default },
+
+		-- Keywords
+		["@keyword"] = { fg = c.coder_keyword, style = options.styles.keywords }, -- For keywords that don't fall in previous categories.
+		["@keyword.function"] = { link = "@keyword" }, -- For keywords used to define a fuction.
+		["@keyword.import"] = { link = "@keyword" },
 		["@keyword.coroutine"] = { link = "@keyword" },
-		["@keyword.operator"] = { link = "@operator" },
+		["@keyword.operator"] = { link = "@keyword" },
 		["@keyword.return"] = { link = "@keyword" },
-		["@function.method"] = { link = "Function" },
-		["@function.method.call"] = { link = "@function.method" },
+		["@keyword.debug"] = { link = "@keyword" },
+		["@keyword.directive.define"] = { link = "@keyword" },
+		["@keyword.exception"] = { link = "@keyword" },
+		["@keyword.conditional"] = { link = "@keyword" },
+		--["@keyword.directive"] = { link = "PreProc" },
+		--["@keyword.repeat"] = { link = "Repeat" },
+		--["@keyword.storage"] = { link = "StorageClass" },
+		-- functions
+		["@function"] = { fg = c.coder_function },
+		["@function.builtin"] = { fg = c.coder_function },
+		["@function.call"] = { fg = c.coder_function },
+		["@function.macro"] = { fg = c.coder_preproc, style = options.styles.macros },
+		["@function.method"] = { fg = c.coder_function },
+		["@function.method.call"] = { fg = c.coder_function },
+
+		-- namespace
 		["@namespace.builtin"] = { link = "@variable.builtin" },
-		["@none"] = {},
-		["@number"] = { link = "Number" },
-		["@keyword.directive"] = { link = "PreProc" },
-		["@keyword.repeat"] = { link = "Repeat" },
-		["@keyword.storage"] = { link = "StorageClass" },
-		["@string"] = { link = "String" },
-		["@markup.link.label"] = { link = "SpecialChar" },
-		["@markup.link.label.symbol"] = { link = "Identifier" },
-		["@tag"] = { link = "Label" },
-		["@tag.attribute"] = { link = "@property" },
-		["@tag.delimiter"] = { link = "Delimiter" },
-		["@markup"] = { link = "@none" },
-		["@markup.environment"] = { link = "Macro" },
-		["@markup.environment.name"] = { link = "Type" },
-		["@markup.raw"] = { link = "String" },
-		["@markup.math"] = { link = "Special" },
+
+		-- tags
+		["@tag"] = { fg = c.coder_preproc },
+		["@tag.attribute"] = { fg = c.coder_text_default },
+		["@tag.delimiter"] = { fg = c.coder_text_default },
+
+		-- markup
+		["@markup"] = { fg = c.coder_text_default },
+		["@markup.environment"] = { fg = c.coder_text_default },
+		["@markup.environment.name"] = { fg = c.coder_text_default },
+		["@markup.raw"] = { fg = c.coder_text_default },
+		["@markup.math"] = { fg = c.coder_pop1 },
 		["@markup.strong"] = { bold = true },
 		["@markup.emphasis"] = { italic = true },
 		["@markup.strikethrough"] = { strikethrough = true },
 		["@markup.underline"] = { underline = true },
-		["@markup.heading"] = { link = "Title" },
+		["@markup.heading"] = { fg = c.orange500 },
+		["@markup.link.label"] = { fg = c.coder_special_character },
+		["@markup.link.label.symbol"] = { fg = c.coder_text_default },
+		["@markup.link.url"] = { link = "Underlined" },
+
+		--modules
+		["@module"] = { fg = c.coder_at_highlight },
+		["@module.builtin"] = { fg = c.coder_at_highlight }, -- Variable names that are defined by the languages, like `this` or `self`.
+
+		--[[
+		-- comments
 		["@comment.note"] = { fg = c.hint },
 		["@comment.error"] = { fg = c.error },
 		["@comment.hint"] = { fg = c.hint },
 		["@comment.info"] = { fg = c.info },
 		["@comment.warning"] = { fg = c.warning },
 		["@comment.todo"] = { link = "Todo" },
-		["@markup.link.url"] = { link = "Underlined" },
-		["@type"] = { link = "Type" },
-		["@type.definition"] = { link = "Typedef" },
-		["@type.qualifier"] = { link = "@keyword" },
+		["@comment.documentation"] = { fg = c.coder_text_default },
 
-		--- Misc
-		-- ["@comment.documentation"] = { },
-		["@operator"] = { link = "Operator" }, -- For any operator: `+`, but also `->` and `*` in C.
 
 		--- Punctuation
 		["@punctuation.delimiter"] = { fg = c.coder_highlight_junk }, -- For delimiters ie: `.`
@@ -237,26 +268,12 @@ function M.setup()
 		["@markup.list"] = { fg = c.blue500 }, -- For special punctutation that does not fall in the catagories before.
 		["@markup.list.markdown"] = { fg = c.orange500, bold = true },
 
-		--- Literals
-		["@string.documentation"] = { fg = c.cyan500 },
-		["@string.regexp"] = { fg = c.coder_str_special }, -- For regexes.
-		["@string.escape"] = { fg = c.coder_str_special }, -- For escape characters within a string.
-
-		--- Keywords
-		["@keyword"] = { fg = c.coder_keyword, style = options.styles.keywords }, -- For keywords that don't fall in previous categories.
-		["@keyword.function"] = { fg = c.coder_keyword, style = options.styles.functions }, -- For keywords used to define a fuction.
-
 		["@label"] = { fg = c.coder_preproc }, -- For labels: `label:` in C and `:label:` in Lua.
 
 		--- Types
-		["@type.builtin"] = { link = "Type" },
-		["@variable.member"] = { fg = c.cyan500 }, -- For fields.
 		["@property"] = { link = "Identifier" },
 
-		--- Identifiers
-		["@variable"] = { fg = c.coder_text_default, style = options.styles.variables }, -- Any variable name that does not have another highlight.
-		["@variable.builtin"] = { fg = c.coder_at_highlight }, -- Variable names that are defined by the languages, like `this` or `self`.
-		["@module.builtin"] = { fg = c.coder_at_highlight }, -- Variable names that are defined by the languages, like `this` or `self`.
+
 
 		--- Text
 		-- ["@markup.raw.markdown"] = { fg = c.blue },
@@ -270,7 +287,6 @@ function M.setup()
 		["@diff.minus"] = { link = "DiffDelete" },
 		["@diff.delta"] = { link = "DiffChange" },
 
-		["@module"] = { link = "Include" },
 
 		-- tsx
 		["@tag.tsx"] = { fg = c.green500 },
@@ -321,6 +337,7 @@ function M.setup()
 		["@lsp.typemod.variable.static"] = { link = "@constant" },
 		-- NOTE:  maybe add these with distinct highlights?
 		-- ["@lsp.typemod.variable.globalScope"] (global variables)
+        ]]
 
 		-- ts-rainbow
 		rainbowcol1 = { fg = c.red500 },
