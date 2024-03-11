@@ -177,9 +177,9 @@ function M.setup()
 		["@comment"] = { fg = c.coder_comment },
 
 		-- types
-		["@type"] = { link = "@none" },
-		["@type.definition"] = { link = "@none" },
-		["@type.qualifier"] = { link = "@none" },
+		["@type"] = { fg = c.coder_types },
+		["@type.definition"] = { fg = c.coder_keyword },
+		["@type.qualifier"] = { fg = c.coder_keyword },
 		["@type.builtin"] = { fg = c.coder_keyword },
 		["@string"] = { fg = c.coder_str_constant },
 		["@string.documentation"] = { fg = c.cyan500 },
@@ -190,8 +190,8 @@ function M.setup()
 		["@boolean"] = { fg = c.coder_bool_constant },
 		["@character"] = { fg = c.coder_char_constant },
 		["@character.special"] = { fg = c.coder_char_constant },
-		["@constant"] = {},
-		["@constant.builtin"] = { fg = c.coder_constant_builtin },
+		["@constant"] = { fg = c.coder_constant },
+		["@constant.builtin"] = { fg = c.coder_function },
 		["@constant.macro"] = { fg = c.coder_preproc },
 		--- Variables
 		["@variable"] = { fg = c.coder_text_default }, -- Any variable name that does not have another highlight.
