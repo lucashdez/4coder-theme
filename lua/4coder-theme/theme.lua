@@ -249,7 +249,6 @@ function M.setup()
 		["@module"] = { fg = c.coder_at_highlight },
 		["@module.builtin"] = { fg = c.coder_at_highlight }, -- Variable names that are defined by the languages, like `this` or `self`.
 
-		--[[
 		-- comments
 		["@comment.note"] = { fg = c.hint },
 		["@comment.error"] = { fg = c.error },
@@ -258,7 +257,6 @@ function M.setup()
 		["@comment.warning"] = { fg = c.warning },
 		["@comment.todo"] = { link = "Todo" },
 		["@comment.documentation"] = { fg = c.coder_text_default },
-
 
 		--- Punctuation
 		["@punctuation.delimiter"] = { fg = c.coder_highlight_junk }, -- For delimiters ie: `.`
@@ -271,9 +269,7 @@ function M.setup()
 		["@label"] = { fg = c.coder_preproc }, -- For labels: `label:` in C and `:label:` in Lua.
 
 		--- Types
-		["@property"] = { link = "Identifier" },
-
-
+		["@property"] = { fg = c.coder_text_default },
 
 		--- Text
 		-- ["@markup.raw.markdown"] = { fg = c.blue },
@@ -287,57 +283,10 @@ function M.setup()
 		["@diff.minus"] = { link = "DiffDelete" },
 		["@diff.delta"] = { link = "DiffChange" },
 
-
 		-- tsx
 		["@tag.tsx"] = { fg = c.green500 },
 		["@constructor.tsx"] = { fg = c.blue500 },
 		["@tag.delimiter.tsx"] = { fg = c.orange500 },
-
-		-- LSP Semantic Token Groups
-		["@lsp.type.boolean"] = { link = "@boolean" },
-		["@lsp.type.builtinType"] = { link = "@type.builtin" },
-		["@lsp.type.comment"] = { link = "@comment" },
-		["@lsp.type.decorator"] = { link = "@attribute" },
-		["@lsp.type.deriveHelper"] = { link = "@attribute" },
-		["@lsp.type.enum"] = { link = "@type" },
-		["@lsp.type.enumMember"] = { link = "@constant" },
-		["@lsp.type.escapeSequence"] = { link = "@string.escape" },
-		["@lsp.type.formatSpecifier"] = { link = "@markup.list" },
-		["@lsp.type.generic"] = { link = "@variable" },
-		["@lsp.type.interface"] = { fg = c.blue500 },
-		["@lsp.type.keyword"] = { link = "@keyword" },
-		["@lsp.type.lifetime"] = { link = "@keyword.storage" },
-		["@lsp.type.namespace"] = { link = "@module" },
-		["@lsp.type.number"] = { link = "@number" },
-		["@lsp.type.operator"] = { link = "@operator" },
-		["@lsp.type.parameter"] = { link = "@variable.parameter" },
-		["@lsp.type.property"] = { link = "@property" },
-		["@lsp.type.selfKeyword"] = { link = "@variable.builtin" },
-		["@lsp.type.selfTypeKeyword"] = { link = "@variable.builtin" },
-		["@lsp.type.string"] = { link = "@string" },
-		["@lsp.type.typeAlias"] = { link = "@type.definition" },
-		["@lsp.type.unresolvedReference"] = { undercurl = true, sp = c.error },
-		["@lsp.type.variable"] = {}, -- use treesitter styles for regular variables
-		["@lsp.typemod.class.defaultLibrary"] = { link = "@type.builtin" },
-		["@lsp.typemod.enum.defaultLibrary"] = { link = "@type.builtin" },
-		["@lsp.typemod.enumMember.defaultLibrary"] = { link = "@constant.builtin" },
-		["@lsp.typemod.function.defaultLibrary"] = { link = "@function.builtin" },
-		["@lsp.typemod.keyword.async"] = { link = "@keyword.coroutine" },
-		["@lsp.typemod.keyword.injected"] = { link = "@keyword" },
-		["@lsp.typemod.macro.defaultLibrary"] = { link = "@function.builtin" },
-		["@lsp.typemod.method.defaultLibrary"] = { link = "@function.builtin" },
-		["@lsp.typemod.operator.injected"] = { link = "@operator" },
-		["@lsp.typemod.string.injected"] = { link = "@string" },
-		["@lsp.typemod.struct.defaultLibrary"] = { link = "@type.builtin" },
-		["@lsp.typemod.type.defaultLibrary"] = { fg = c.blue500 },
-		["@lsp.typemod.typeAlias.defaultLibrary"] = { fg = c.blue500 },
-		["@lsp.typemod.variable.callable"] = { link = "@function" },
-		["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable.builtin" },
-		["@lsp.typemod.variable.injected"] = { link = "@variable" },
-		["@lsp.typemod.variable.static"] = { link = "@constant" },
-		-- NOTE:  maybe add these with distinct highlights?
-		-- ["@lsp.typemod.variable.globalScope"] (global variables)
-        ]]
 
 		-- ts-rainbow
 		rainbowcol1 = { fg = c.red500 },
