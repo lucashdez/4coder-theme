@@ -182,7 +182,7 @@ function M.setup()
 		["@type.qualifier"] = { fg = c.coder_keyword },
 		["@type.builtin"] = { fg = c.coder_keyword },
 		["@string"] = { fg = c.coder_str_constant },
-		["@string.documentation"] = { fg = c.cyan500 },
+		["@string.documentation"] = { fg = c.coder_str_constant },
 		["@string.regexp"] = { fg = c.coder_str_special }, -- For regexes.
 		["@string.escape"] = { fg = c.coder_str_special }, -- For escape characters within a string.
 		["@number"] = { fg = c.coder_int_constant },
@@ -232,8 +232,8 @@ function M.setup()
 
 		-- markup
 		["@markup"] = { fg = c.coder_text_default },
-		["@markup.environment"] = { fg = c.coder_text_default },
-		["@markup.environment.name"] = { fg = c.coder_text_default },
+		["@markup.environment"] = { fg = c.coder_ghost_character },
+		["@markup.environment.name"] = { fg = c.coder_special_character },
 		["@markup.raw"] = { fg = c.coder_text_default },
 		["@markup.math"] = { fg = c.coder_pop1 },
 		["@markup.strong"] = { bold = true },
@@ -256,7 +256,7 @@ function M.setup()
 		["@comment.info"] = { fg = c.info },
 		["@comment.warning"] = { fg = c.warning },
 		["@comment.todo"] = { link = "Todo" },
-		["@comment.documentation"] = { fg = c.coder_text_default },
+		["@comment.documentation"] = { fg = c.coder_comment },
 
 		--- Punctuation
 		["@punctuation.delimiter"] = { fg = c.coder_highlight_junk }, -- For delimiters ie: `.`
@@ -283,10 +283,52 @@ function M.setup()
 		["@diff.minus"] = { link = "DiffDelete" },
 		["@diff.delta"] = { link = "DiffChange" },
 
-		-- tsx
-		["@tag.tsx"] = { fg = c.green500 },
-		["@constructor.tsx"] = { fg = c.blue500 },
-		["@tag.delimiter.tsx"] = { fg = c.orange500 },
+		-- LSP Semantic Token Groups
+		["@lsp.type.boolean"] = { link = "@boolean" },
+		["@lsp.type.builtinType"] = { link = "@type.builtin" },
+		["@lsp.type.comment"] = { link = "@comment" },
+		["@lsp.type.decorator"] = { link = "@attribute" },
+		["@lsp.type.deriveHelper"] = { link = "@attribute" },
+		["@lsp.type.enum"] = { link = "@type" },
+		["@lsp.type.enumMember"] = { link = "@constant" },
+		["@lsp.type.function"] = { fg = c.coder_function },
+		["@lsp.type.interface"] = { fg = c.coder_function },
+		["@lsp.type.method"] = { fg = c.coder_function },
+		["@lsp.type.escapeSequence"] = { link = "@string.escape" },
+		["@lsp.type.formatSpecifier"] = { link = "@markup.list" },
+		["@lsp.type.generic"] = { link = "@variable" },
+		["@lsp.type.keyword"] = { link = "@keyword" },
+		["@lsp.type.lifetime"] = { link = "@keyword.storage" },
+		["@lsp.type.namespace"] = { link = "@module" },
+		["@lsp.type.number"] = { link = "@number" },
+		["@lsp.type.operator"] = { link = "@operator" },
+		["@lsp.type.parameter"] = { link = "@variable.parameter" },
+		["@lsp.type.property"] = { link = "@property" },
+		["@lsp.type.selfKeyword"] = { link = "@variable.builtin" },
+		["@lsp.type.selfTypeKeyword"] = { link = "@variable.builtin" },
+		["@lsp.type.string"] = { link = "@string" },
+		["@lsp.type.typeAlias"] = { link = "@type.definition" },
+		["@lsp.type.unresolvedReference"] = { undercurl = true, sp = c.error },
+		["@lsp.type.variable"] = {}, -- use treesitter styles for regular variables
+		["@lsp.typemod.class.defaultLibrary"] = { link = "@type.builtin" },
+		["@lsp.typemod.enum.defaultLibrary"] = { link = "@type.builtin" },
+		["@lsp.typemod.enumMember.defaultLibrary"] = { link = "@constant.builtin" },
+		["@lsp.typemod.function.defaultLibrary"] = { fg = c.coder_function },
+		["@lsp.typemod.keyword.async"] = { link = "@keyword" },
+		["@lsp.typemod.keyword.injected"] = { link = "@keyword" },
+		["@lsp.typemod.macro.defaultLibrary"] = { fg = c.coder_preproc },
+		["@lsp.typemod.method.defaultLibrary"] = { fg = c.coder_function },
+		["@lsp.typemod.operator.injected"] = { link = "@operator" },
+		["@lsp.typemod.string.injected"] = { link = "@string" },
+		["@lsp.typemod.struct.defaultLibrary"] = { link = "@type.builtin" },
+		["@lsp.typemod.type.defaultLibrary"] = { fg = c.coder_types },
+		["@lsp.typemod.typeAlias.defaultLibrary"] = { fg = c.coder_types },
+		["@lsp.typemod.variable.callable"] = { fg = c.coder_function },
+		["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable" },
+		["@lsp.typemod.variable.injected"] = { link = "@variable" },
+		["@lsp.typemod.variable.static"] = { link = "@variable" },
+		-- NOTE:  maybe add these with distinct highlights?
+		-- ["@lsp.typemod.variable.globalScope"] (global variables)
 
 		-- ts-rainbow
 		rainbowcol1 = { fg = c.red500 },
