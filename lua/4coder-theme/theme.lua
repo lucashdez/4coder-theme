@@ -171,8 +171,8 @@ function M.setup()
 		-- These groups are for the Neovim tree-sitter highlights.
 		["@none"] = { fg = c.coder_text_default },
 		-- misc
-		["@annotation"] = { fg = c.coder_types },
-		["@attribute"] = { fg = c.coder_types },
+		["@annotation"] = { fg = c.coder_preproc },
+		["@attribute"] = { fg = c.coder_preproc },
 		["@operator"] = { fg = c.coder_preproc }, -- For any operator: `+`, but also `->` and `*` in C.
 		["@comment"] = { fg = c.coder_comment },
 
