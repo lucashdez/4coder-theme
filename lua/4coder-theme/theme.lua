@@ -171,8 +171,8 @@ function M.setup()
 		-- These groups are for the Neovim tree-sitter highlights.
 		["@none"] = { fg = c.coder_text_default },
 		-- misc
-		["@annotation"] = { fg = c.coder_preproc },
-		["@attribute"] = { fg = c.coder_preproc },
+		["@annotation"] = { fg = c.coder_types },
+		["@attribute"] = { fg = c.coder_types },
 		["@operator"] = { fg = c.coder_preproc }, -- For any operator: `+`, but also `->` and `*` in C.
 		["@comment"] = { fg = c.coder_comment },
 
@@ -307,6 +307,7 @@ function M.setup()
 		["@lsp.type.selfKeyword"] = { link = "@variable.builtin" },
 		["@lsp.type.selfTypeKeyword"] = { link = "@variable.builtin" },
 		["@lsp.type.string"] = { link = "@string" },
+		["@lsp.type.class"] = { fg = c.coder_types },
 		["@lsp.type.typeAlias"] = { link = "@type.definition" },
 		["@lsp.type.unresolvedReference"] = { undercurl = true, sp = c.error },
 		["@lsp.type.variable"] = {}, -- use treesitter styles for regular variables
@@ -327,6 +328,8 @@ function M.setup()
 		["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable" },
 		["@lsp.typemod.variable.injected"] = { link = "@variable" },
 		["@lsp.typemod.variable.static"] = { link = "@variable" },
+		-- luadoc
+		["@lsp.type.keyword.lua"] = { fg = c.coder_preproc, bold = true, italic = true },
 		-- NOTE:  maybe add these with distinct highlights?
 		-- ["@lsp.typemod.variable.globalScope"] (global variables)
 
