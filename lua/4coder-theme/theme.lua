@@ -85,7 +85,6 @@ function M.setup()
 		-- but they are defacto standard group names for syntax highlighting.
 		-- commented out groups should chain up to their "preferred" group by
 		-- default,
-		--[[ Uncomment and edit if you want more specific syntax highlighting.
 		Constant = { fg = c.coder_at_highlight, bold = true }, -- (preferred) any constant
 		String = { fg = c.coder_str_constant }, --   a string constant: "this is a string"
 		Character = { fg = c.coder_str_constant }, --  a character constant: 'c', '\n'
@@ -99,10 +98,9 @@ function M.setup()
 		Keyword = { fg = c.coder_keyword, style = options.styles.keywords }, --  any other keyword
 		PreProc = { fg = c.coder_preproc }, -- (preferred) generic Preprocessor
 		Include = { fg = c.coder_preproc },
-		Type = { fg = c.coder_type }, -- (preferred) int, long, char, etc.
+		Type = { fg = c.coder_types }, -- (preferred) int, long, char, etc.
 		Special = { fg = c.coder_highlight_junk }, -- (preferred) any special symbol
 		Debug = { fg = c.orange500 }, --    debugging statements
-        -- ]]
 		Underlined = { underline = true }, -- (preferred) text that stands out, HTML links
 		Bold = { bold = true },
 		Italic = { italic = true },
