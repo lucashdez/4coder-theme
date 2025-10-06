@@ -290,7 +290,7 @@ function M.setup()
 		["@lsp.type.enum"] = { link = "@type" },
 		["@lsp.type.enumMember"] = { link = "@constant" },
 		["@lsp.type.function"] = { fg = c.coder_function },
-		["@lsp.type.interface"] = { fg = c.coder_function },
+		["@lsp.type.interface"] = { fg = c.coder_text_default },
 		["@lsp.type.method"] = { fg = c.coder_function },
 		["@lsp.type.escapeSequence"] = { link = "@string.escape" },
 		["@lsp.type.formatSpecifier"] = { link = "@markup.list" },
