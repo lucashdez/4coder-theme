@@ -2,7 +2,7 @@ local M = {}
 
 local defaults = {
 	style = "custom",
-	transparent = false,
+	transparent = true,
 	terminal_colors = true,
 	styles = {
 		comments = { italic = true },
